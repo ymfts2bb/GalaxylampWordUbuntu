@@ -1,0 +1,30 @@
+---
+# tasks file for lamp
+    - name: install lamp stack
+      become: yes
+      become_user: root
+      apt:
+        pkg:
+          - apache2
+          - mysql-server
+          - php7.2
+          - php7.2-mysql
+        state: present
+        update_cache: yes
+
+    - name: start apache service
+      become: yes
+      become_user: root
+      service:
+        name: apache2
+        state: started
+        enabled: yes
+
+    - name: start mysql service
+      become: yes
+      become_user: root
+      service:
+        name: mysql
+        state: started
+        enabled: yes
+
